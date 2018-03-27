@@ -8,15 +8,16 @@ from uuid import getnode
 
 def daemon():
     sys.stdout.write("Arguments {0}\n".format(' '.join(sys.argv)))
-    sys.stdout.write("--- environs:\r\n")
-    for e in os.environ.items():
-        sys.stdout.write("{0}: {1}\r\n".format(*e))
-
-    sys.stdout.write("--- done.\r\n")
 
     while True:
+        sys.stdout.write("--- environs:\n")
+        for e in os.environ.items():
+            sys.stdout.write("{0}: {1}\n".format(*e))
+
+        sys.stdout.write("--- done.\n")
+
         sys.stdout.write(datetime.datetime.now().isoformat())
-        sys.stdout.write("\r\n")
+        sys.stdout.write("\n")
         time.sleep(3)
 
 def command():
