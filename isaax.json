@@ -7,7 +7,7 @@
   "license": "GPL",
   "language":"python",
   "scripts": {
-     "start": "python -u daemon.py -s"
+     "start": "python -u daemon.py -s -G"
     },
    "dependency": null
 }
