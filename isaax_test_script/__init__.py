@@ -6,19 +6,30 @@ import datetime
 import time
 from uuid import getnode
 
+OUTPUT_PATH = os.environ.get('ISAAXTEST_OUTPUT_PATH', '/tmp/isaax-project-test')
+WHILE_SPAN = int(os.environ.get('ISAAXTEST_WHILE_SPAN', '10'))
+
 def daemon():
+    sys.stdout.write("!!start\n")
     sys.stdout.write("Arguments {0}\n".format(' '.join(sys.argv)))
 
     while True:
-        sys.stdout.write("--- environs:\n")
+        output(sys.stdout)
+
+        with open(OUTPUT_PATH, 'w') as f:
+            output(f)
+
+        time.sleep(10)
+
+
+def output(stream=sys.stdout):
+        stream.write(datetime.datetime.now().isoformat())
+        stream.write("\n")
+        stream.write("---environs:\n")
         for e in os.environ.items():
-            sys.stdout.write("{0}: {1}\n".format(*e))
+            stream.write("{0}: {1}\n".format(*e))
 
-        sys.stdout.write("--- done.\n")
-
-        sys.stdout.write(datetime.datetime.now().isoformat())
-        sys.stdout.write("\n")
-        time.sleep(3)
+        stream.write("---done.\n")
 
 def command():
     sys.stdout.write("HELLO !\n")
