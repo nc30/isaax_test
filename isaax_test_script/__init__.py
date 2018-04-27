@@ -14,8 +14,6 @@ def daemon():
     sys.stdout.write("Arguments {0}\n".format(' '.join(sys.argv)))
 
     while True:
-        output(sys.stdout)
-
         with open(OUTPUT_PATH, 'w') as f:
             output(f)
 
